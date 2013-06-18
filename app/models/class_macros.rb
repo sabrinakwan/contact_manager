@@ -86,6 +86,6 @@ class Gallery
 
 end
 
-article = Article.new author: "Tol", publish_date :"1/1/1901"
-puts article.attribute_list
-galary = Gallery.new title: "Kim K baby"
+#article = Article.new author: "Tol", publish_date :"1/1/1901"
+#puts article.attribute_list
+#galary = Gallery.new title: "Kim K baby"
