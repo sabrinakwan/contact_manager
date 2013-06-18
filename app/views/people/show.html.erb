@@ -10,6 +10,13 @@
   <%= @person.last_name %>
 </p>
 
+<% @person.phone_numbers.each do |phone| %>
+  <li> <%= phone.number %>
+    <%= link_to('edit', edit_phone_number_path(phone), id:"edit-phone-#{phone.id}") %>
+    <%= link_to('delete', phone_number_path(phone), id:"delete-phone-#{phone.id}", confirm: 'Are you sure?', method: :delete) %></li>
+<% end %>
+
+<%= link_to 'Add phone number', new_phone_number_path(person_id: @person.id) %>
 
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>

@@ -24,7 +24,7 @@ class PhoneNumbersController < ApplicationController
   # GET /phone_numbers/new
   # GET /phone_numbers/new.json
   def new
-    @phone_number = PhoneNumber.new
+    @phone_number = PhoneNumber.new(person_id: params[:person_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,9 +42,10 @@ class PhoneNumbersController < ApplicationController
   def create
     @phone_number = PhoneNumber.new(params[:phone_number])
 
+    #format.html { redirect_to person_path(@phone_number.person), notice: 'Phone number was successfully created.' }
     respond_to do |format|
       if @phone_number.save
-        format.html { redirect_to @phone_number, notice: 'Phone number was successfully created.' }
+        format.html { redirect_to @phone_number.person, notice: 'Phone number was successfully created.' }
         format.json { render json: @phone_number, status: :created, location: @phone_number }
       else
         format.html { render action: "new" }
@@ -60,7 +61,7 @@ class PhoneNumbersController < ApplicationController
 
     respond_to do |format|
       if @phone_number.update_attributes(params[:phone_number])
-        format.html { redirect_to @phone_number, notice: 'Phone number was successfully updated.' }
+        format.html { redirect_to @phone_number.person, notice: 'Phone number was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +77,8 @@ class PhoneNumbersController < ApplicationController
     @phone_number.destroy
 
     respond_to do |format|
-      format.html { redirect_to phone_numbers_url }
+      #format.html { redirect_to phone_numbers_url }
+      format.html { redirect_to @phone_number.person }
       format.json { head :no_content }
     end
   end

@@ -36,4 +36,5 @@ describe PhoneNumber do
     expect(phone_number).to respond_to(:person)
     expect(phone_number.person).to eq person
   end
+
 end

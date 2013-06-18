@@ -16,8 +16,11 @@
     <%= f.text_field :number %>
   </div>
   <div class="field">
-    <%= f.label :person %><br />
-    <%= f.text_field :person %>
+    <% if @phone_number.person != nil %>
+        <%= @phone_number.person.first_name %>
+        <%= @phone_number.person.last_name %>
+    <% end %>
+    <%= f.hidden_field :person_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
